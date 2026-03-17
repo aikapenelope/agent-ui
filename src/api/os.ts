@@ -149,17 +149,14 @@ export const getTeamsAPI = async (
 
 export const deleteTeamSessionAPI = async (
   base: string,
-  teamId: string,
+  _teamId: string,
   sessionId: string,
   authToken?: string
 ) => {
-  const response = await fetch(
-    APIRoutes.DeleteTeamSession(base, teamId, sessionId),
-    {
-      method: 'DELETE',
-      headers: createHeaders(authToken)
-    }
-  )
+  const response = await fetch(APIRoutes.DeleteSession(base, sessionId), {
+    method: 'DELETE',
+    headers: createHeaders(authToken)
+  })
 
   if (!response.ok) {
     throw new Error(`Failed to delete team session: ${response.statusText}`)
